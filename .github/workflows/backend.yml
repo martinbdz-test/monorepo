@@ -1,0 +1,33 @@
+name: Backend
+on:
+  push:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/**'
+    branches:
+      - master
+
+  pull_request:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/**'
+    types:
+      - opened
+      - synchronize
+      - reopened
+  
+jobs:
+  sonarcloud: 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      with:
+        projectBaseDir: backend
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
+        SONARCLOUD_URL: https://squad-5-core.sc-dev.io
