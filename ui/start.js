@@ -5,3 +5,5 @@ function myEmptyFunction() {}
 function myUnCalledFunction() {
   return 1234;
 }
+
+myEmptyFunction();
