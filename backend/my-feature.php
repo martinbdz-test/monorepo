@@ -16,3 +16,4 @@ function storeData($username) {
 function emptyFunc() {}
 
 shell_exec($test);
+echo $_GET['username'];
